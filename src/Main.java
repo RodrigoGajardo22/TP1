@@ -1,13 +1,12 @@
-import java.time.LocalDate;
+/*import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
 
-		Concurso c = new Concurso();
-
 		LocalDate fecha = LocalDate.now();
+		Concurso c = new Concurso(fecha.minusDays(2), fecha.plusDays(8)); // abierto hace 2 dias.
 
 		int n = 1;
 		Scanner teclado = new Scanner(System.in);
@@ -18,9 +17,10 @@ public class Main {
 			System.out.println("2 - Mostrar Inscriptos ");
 			System.out.println("0 - Finalizar. ");
 			n = teclado.nextInt();
-			if (n == 1)
-				c.cargarParticipante(fecha);
-			else if (n == 2)
+			if (n == 1) {
+				Participante p = new Participante(fecha);
+				c.inscribirParticipante(p);
+			} else if (n == 2)
 				c.mostrarParticipantes();
 
 		}
@@ -29,3 +29,4 @@ public class Main {
 	}
 
 }
+*/

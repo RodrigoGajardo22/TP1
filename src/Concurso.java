@@ -1,52 +1,54 @@
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Concurso {
 
-	private Participante participantes[];
+	private List<Participante> listParticipantes;
 	private LocalDate fechaInicio, fechaFin;
 	private int numParticipante;
 
-	public Concurso() {
-		participantes = new Participante[10];
-		asignarFechas();
+	public Concurso(LocalDate fechaIni, LocalDate fechaFin) {
+		this.fechaInicio = fechaIni;
+		this.fechaFin = fechaFin;
+		listParticipantes = new ArrayList<Participante>();
 		numParticipante = 0;
 	}
 
-	public void cargarParticipante(LocalDate fecha) {
+	public boolean inscribirParticipante(Participante p) {
 
-		if (puedeInscribirse(fecha)) {
-			Participante p = new Participante(fecha);
-			p.registrarDatos();
-			participantes[numParticipante] = p;
+		
+		if (puedeInscribirse(p.getFecha())) { // Si en la fehca de hoy se puede inscribir...
+			p.sumarPuntos(fechaInicio);
+			listParticipantes.add(p);
 			numParticipante++;
-		} else
-			System.out.println("Las incripciones se encuentran cerradas.");
+			return true;
+		} else {
+		//	System.out.println(" Las incripciones se encuentran cerradas.");
+			return false;
+		}
 
 	}
 
 	private boolean puedeInscribirse(LocalDate fecha) {// si la fecha es valida, entonces True;
-
-		if (fecha.isAfter(fechaInicio) || fecha.isBefore(fechaFin))
+		
+		if (fecha.equals(fechaInicio))
 			return true;
-		else
-			return false;
-	}
+		if (fecha.isAfter(fechaInicio) && fecha.isBefore(fechaFin))
+			return true;
 
-	private void asignarFechas() {
-
-		fechaInicio = LocalDate.now();
-		fechaFin = fechaInicio.plusDays(10);
-
+		return false;
 	}
 
 	public void mostrarParticipantes() {
 
-		int i;
+		int i = 1;
 		if (numParticipante > 0)
-			for (i = 0; i < numParticipante; i++) {
-				System.out.println(i + 1 + " - " + participantes[i].mostrarDatos());
+			for (Participante p : listParticipantes) {
+				System.out.println(i + " - " + p.mostrarDatos());
+				i++;
 			}
 		else
 			System.out.println("Aun no hay participantes registrados.");
