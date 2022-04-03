@@ -10,9 +10,9 @@ public class Tarjeta {
 		this.propina = propina;
 	}
 
-	public boolean procesarPago(float montoBebida,float montoComida) {
-		float monto = montoBebida+montoComida;
-		float montoTotal= monto + monto*(propina/100);
+	public boolean procesarPago(float montoBebida, float montoComida) {
+
+		float montoTotal = calculo(montoBebida, montoComida);
 		if (cobertura >= montoTotal) {
 			cobertura = -montoTotal;
 			return true;
@@ -21,4 +21,10 @@ public class Tarjeta {
 
 	}
 
+	public float calculo(float montoBebida, float montoComida) {
+
+		float monto = montoBebida + montoComida;
+		return monto + monto * propina / 100;
+
+	}
 }

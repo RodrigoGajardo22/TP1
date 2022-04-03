@@ -19,5 +19,12 @@ public class ComarcaPlus extends Tarjeta{
 		return false;
 
 	}
+	
+	public float calculo(float montoBebida,float montoComida) {
+		float montoConDescuento = (float) ((montoBebida + montoComida) - (montoBebida+montoComida)*descuento);
+		
+		
+		return montoConDescuento + montoConDescuento*propina/100;
+	}
 }
 

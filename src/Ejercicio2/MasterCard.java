@@ -8,14 +8,11 @@ public class MasterCard extends Tarjeta {
 
 	}
 
-	public boolean procesarPago(float montoBebida, float montoComida) {
-		double monto = (montoComida - (montoComida * descuento)) + montoBebida;
-		float montoTotal = (float) (monto + monto * (propina / 100));
-		if (cobertura >= montoTotal) {
-			cobertura = -montoTotal;
-			return true;
-		}
-		return false;
+	public float calculo(float montoBebida, float montoComida) {
+		float montoComidaConDescuento = (float) (montoComida - montoComida * descuento);
 
+		float subTotal = montoBebida + montoComidaConDescuento;
+
+		return subTotal + subTotal * propina / 100;
 	}
 }

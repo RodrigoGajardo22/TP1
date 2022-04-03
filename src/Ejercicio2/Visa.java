@@ -1,25 +1,19 @@
 package Ejercicio2;
 
-public class Visa extends Tarjeta{
+public class Visa extends Tarjeta {
 	private final double descuento = 0.03;
 
 	public Visa(float cobertura, int propina) {
 		super(cobertura, propina);
-		
-	}
-	
-	public boolean procesarPago(float montoBebida,float montoComida) {
-		double monto = (montoBebida-(montoBebida*descuento))+montoComida;
-		float montoTotal= (float) (monto + monto*(propina/100));
-		if (cobertura >= montoTotal) {
-			cobertura = -montoTotal;
-			return true;
-		}
-		return false;
 
 	}
 
-	
-	
+	public float calculo(float montoBebida, float montoComida) {
+		float montoBebidaConDescuento = (float) (montoBebida - montoBebida * descuento);
+
+		float subTotal = montoBebidaConDescuento + montoComida;
+
+		return subTotal + subTotal * propina / 100;
+	}
 
 }
