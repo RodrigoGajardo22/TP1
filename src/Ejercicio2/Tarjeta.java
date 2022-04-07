@@ -2,28 +2,31 @@ package Ejercicio2;
 
 public class Tarjeta {
 //Atributos
-	protected float cobertura;
+	private float cobertura = 15000;
 	protected int propina;
 
-	public Tarjeta(float cobertura, int propina) {
-		this.cobertura = cobertura;
+	public Tarjeta(int propina) {
+
 		this.propina = propina;
 	}
 
-	public boolean procesarPago(float montoBebida, float montoComida) {
+	public void procesarPago(float monto) {
 
-		float montoTotal = calculo(montoBebida, montoComida);
-		if (cobertura >= montoTotal) {
-			cobertura = -montoTotal;
-			return true;
-		}
-		return false;
+		if (cobertura >= monto) {
+			cobertura = -monto;
+			System.out.println("Pago aceptado.");
+		} else
+			System.out.println(" Monto insuficiente.");
 
 	}
 
-	public float calculo(float montoBebida, float montoComida) {
+	public float cobertura() {
+		return cobertura;
+	}
 
-		float monto = montoBebida + montoComida;
+	public float calculo(float montoBebidas, float montoPlatos) {
+
+		float monto = montoBebidas + montoPlatos;
 		return monto + monto * propina / 100;
 
 	}

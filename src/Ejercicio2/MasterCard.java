@@ -3,8 +3,8 @@ package Ejercicio2;
 public class MasterCard extends Tarjeta {
 	private final double descuento = 0.02;
 
-	public MasterCard(float cobertura, int propina) {
-		super(cobertura, propina);
+	public MasterCard(int propina) {
+		super(propina);
 
 	}
 

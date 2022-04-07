@@ -1,30 +1,17 @@
 package Ejercicio2;
 
-public class ComarcaPlus extends Tarjeta{
+public class ComarcaPlus extends Tarjeta {
 	private final double descuento = 0.02;
 
-	public ComarcaPlus(float cobertura, int propina) {
-		super(cobertura, propina);
+	public ComarcaPlus(int propina) {
+		super(propina);
 
 	}
 
-	public boolean procesarPago(float montoBebida, float montoComida) {
-		double monto = montoBebida + montoComida;
-		monto = monto - monto*descuento;
-		float montoTotal = (float) (monto + monto * (propina / 100));
-		if (cobertura >= montoTotal) {
-			cobertura = -montoTotal;
-			return true;
-		}
-		return false;
+	public float calculo(float montoBebida, float montoComida) {
 
-	}
-	
-	public float calculo(float montoBebida,float montoComida) {
-		float montoConDescuento = (float) ((montoBebida + montoComida) - (montoBebida+montoComida)*descuento);
-		
-		
-		return montoConDescuento + montoConDescuento*propina/100;
+		float montoConDescuento = (float) ((montoBebida + montoComida) - (montoBebida + montoComida) * descuento);
+
+		return montoConDescuento + montoConDescuento * propina / 100;
 	}
 }
-

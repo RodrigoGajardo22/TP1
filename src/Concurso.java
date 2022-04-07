@@ -1,6 +1,4 @@
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,24 +17,24 @@ public class Concurso {
 
 	public boolean inscribirParticipante(Participante p) {
 
-		
-		if (puedeInscribirse(p.getFecha())) { // Si en la fehca de hoy se puede inscribir...
-			p.sumarPuntos(fechaInicio);
+		if (puedeInscribirse()) {
+			p.sumarPuntos();
 			listParticipantes.add(p);
 			numParticipante++;
 			return true;
 		} else {
-		//	System.out.println(" Las incripciones se encuentran cerradas.");
 			return false;
 		}
 
 	}
 
-	private boolean puedeInscribirse(LocalDate fecha) {// si la fecha es valida, entonces True;
-		
-		if (fecha.equals(fechaInicio))
+	private boolean puedeInscribirse() {// si la fecha es valida, entonces True;
+
+		LocalDate fechaHoy = LocalDate.now();
+
+		if (fechaHoy.equals(fechaInicio))
 			return true;
-		if (fecha.isAfter(fechaInicio) && fecha.isBefore(fechaFin))
+		if (fechaHoy.isAfter(fechaInicio) && fechaHoy.isBefore(fechaFin))
 			return true;
 
 		return false;
